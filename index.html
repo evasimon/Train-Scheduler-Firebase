@@ -11,6 +11,8 @@
 	<!-- APP CSS LINK -->
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 
+	<!-- FirebaseUI CSS LINK -->
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
 
 	<!-- CDN Link for Moment.js-->
 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -20,6 +22,12 @@
 
 </head>
 <body>
+
+	<h1>Welcome to Train Scheduler App</h1>
+    <div id="sign-in-status"></div>
+    <div id="sign-in"></div>
+    <div id="account-details"></div>
+
 	<div id="container">
 
 		<div class="jumbotron jumbotron-fluid text-center">
@@ -29,7 +37,7 @@
 		<div class="panel panel-primary">
 
 			<div class="panel-heading">
-				<h3 class="panel-title">Current Train Schedule  <span class="selected">*Hurry your train is leaving in less than 5 minutes!</span></h3>
+				<h3 class="panel-title">Current Train Schedule  <span class="selected">*Your train is arriving in less than 5 minutes!</span></h3>
 			</div>
 
 			<div class="panel-body">

@@ -11,6 +11,58 @@ $(document).ready(function() {
 	};
 	firebase.initializeApp(config);
 
+	// FirebaseUI config.
+	var uiConfig = {
+		signInSuccessUrl: 'index.html',
+		signInOptions: [
+		// Leave the lines as is for the providers you want to offer your users.
+		firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+		firebase.auth.GithubAuthProvider.PROVIDER_ID,
+		],
+		// Terms of service url.
+		tosUrl: '<your-tos-url>'
+	};
+
+	// Initialize the FirebaseUI Widget using Firebase.
+	var ui = new firebaseui.auth.AuthUI(firebase.auth());
+	// The start method will wait until the DOM is loaded.
+	ui.start('#firebaseui-auth-container', uiConfig);
+
+	firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			// User is signed in.
+			var displayName = user.displayName;
+			var email = user.email;
+			var emailVerified = user.emailVerified;
+			var photoURL = user.photoURL;
+			var uid = user.uid;
+			var phoneNumber = user.phoneNumber;
+			var providerData = user.providerData;
+			user.getIdToken().then(function(accessToken) {
+				document.getElementById('sign-in-status').textContent = 'Signed in';
+				document.getElementById('sign-in').textContent = 'Sign out';
+				document.getElementById('account-details').textContent = JSON.stringify({
+					displayName: displayName,
+					email: email,
+					emailVerified: emailVerified,
+					phoneNumber: phoneNumber,
+					photoURL: photoURL,
+					uid: uid,
+					accessToken: accessToken,
+					providerData: providerData
+				}, null, '  ');
+			});
+		} else {
+			// User is signed out.
+			document.getElementById('sign-in-status').textContent = 'Signed out';
+			document.getElementById('sign-in').textContent = 'Sign in';
+			document.getElementById('account-details').textContent = 'null';
+			}
+		}, function(error) {
+			console.log(error);
+	});
+
+
 	// sets global variables
 	var database = firebase.database();
 	var trainName;
@@ -35,7 +87,7 @@ $(document).ready(function() {
 			if ( trainFrequency > (24 * 60) ) {
 
 				alert("Frequency must be less than 1440 min (24h). Please try again!");
-				
+
 			} else {
 
 				// creates the data object to be written to the database
@@ -54,7 +106,7 @@ $(document).ready(function() {
 		} else {
 
 			alert("Not a valid date format. Please enter time in military time format!");
-			
+
 		}
 
 	})
