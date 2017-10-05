@@ -3,10 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Train Scheduler App</title>
-	<!-- *******************************************************************************************
-	* TODO(DEVELOPER): Paste the initialization snippet from:
-	* Firebase Console > Overview > Add Firebase to your web app. *
-	***************************************************************************************** -->
+
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyAZaH9g0dKyvCnH-DP4WEO_vlLSQqWunZM",
+	    authDomain: "train-scheduler-498c8.firebaseapp.com",
+	    databaseURL: "https://train-scheduler-498c8.firebaseio.com",
+	    projectId: "train-scheduler-498c8",
+	    storageBucket: "train-scheduler-498c8.appspot.com",
+	    messagingSenderId: "378773885740"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+
 	<script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
 	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
 	<script type="text/javascript">
