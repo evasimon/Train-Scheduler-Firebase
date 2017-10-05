@@ -4,10 +4,19 @@ body {
 	font-family: sans-serif;
 }
 
+.navbar-text {
+	padding-right: 20px;
+}
+
+#loginHeader {
+	float: right;
+}
+
 .jumbotron{
 	background-color: #00415d;
 	color: #fff;
-	border-radius: 8px;
+	border-radius: 5px;
+	clear: both;
 }
 
 #container {
@@ -20,7 +29,7 @@ h1 {
 	font-size: 4.5rem;
 }
 
-.jumbotron span {
+#container .jumbotron span {
 	font-family: serif;
 	font-size: 2.5rem;
 	text-transform: uppercase;

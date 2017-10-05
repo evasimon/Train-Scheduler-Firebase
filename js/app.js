@@ -11,11 +11,6 @@ $(document).ready(function() {
 	};
 	firebase.initializeApp(config);
 
-	// check if someone is logged in
-	if ( !firebase.auth().currentUser ) {
-		console.log(firebase.auth().currentUser);
-		// = "login.html";
-	}
 
 	// checks if the authentication has changed
 	firebase.auth().onAuthStateChanged(function(user) {
