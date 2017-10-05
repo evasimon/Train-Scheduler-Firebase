@@ -1,0 +1,45 @@
+*, *:before, *:after {box-sizing:  border-box;}
+
+body {
+	font-family: sans-serif;
+}
+
+.jumbotron{
+	background-color: #00415d;
+	color: #fff;
+	border-radius: 8px;
+}
+
+#container {
+	width: 90%;
+	margin: auto;
+}
+
+h1 {
+	font-size: 4.5rem;
+}
+
+.jumbotron span {
+	font-family: serif;
+	font-size: 2.5rem;
+	text-transform: uppercase;
+	font-weight: lighter;
+	letter-spacing: 1px;
+	display: block;
+	margin-top: 20px;
+}
+
+.panel-primary,
+.panel-primary .panel-heading {
+	border-color: #00415d;
+}
+
+.panel-primary .panel-heading,
+.btn-primary {
+	background-color: #00415d;
+}
+
+.selected {
+	color: #e20b0b;
+	font-weight: lighter;
+}
