@@ -125,7 +125,7 @@ $(document).ready(function() {
 
 	});
 
-	// deletes table row data
+	// deletes table row data from db
 	$(document).on("click", "#table-body button.glyphicon-trash", function () {
 		
 		database.ref("/trains/" + $(this).data("value")).remove();
