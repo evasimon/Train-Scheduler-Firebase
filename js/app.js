@@ -20,10 +20,12 @@ $(document).ready(function() {
 			$("#account-details").text(email);
 			$("#container").show();
 		} else {
+			// redirects to login
 			window.location = "login.html";
 		}
 	});
 
+	// logouts the user
 	$("#sign-out").on("click", function() {
 		firebase.auth().signOut();
 	})
@@ -79,12 +81,13 @@ $(document).ready(function() {
 
 	// reads data from the firebase database
 	// uses the "child_added" call-back function as data is changed
-	database.ref("/trains").on("child_added", function(snapchatchild){
+	database.ref("/trains").on("child_added", function(child){
 		// gets values from the database and stores them in local variables
-		var name = snapchatchild.val().name;
-		var destination = snapchatchild.val().destination;
-		var time = moment((snapchatchild.val().time), "HH:mm").subtract(1, "days");
-		var frequency = snapchatchild.val().frequency;
+		var name = child.val().name;
+		var destination = child.val().destination;
+		var time = moment((child.val().time), "HH:mm").subtract(1, "days");
+		var frequency = child.val().frequency;
+		var key = child.key;
 
 
 		// calculates what time (min) arrives the next train
@@ -108,7 +111,9 @@ $(document).ready(function() {
 			trainRow.addClass("selected");
 		};
 
+
 		// appends each table cell to the table row
+		trainRow.append("<td><button class='btn btn-default glyphicon glyphicon-trash' data-value='"+ key + "'></button></td>");
 		trainRow.append("<td>" + name + "</td>");
 		trainRow.append("<td>" + destination + "</td>");
 		trainRow.append("<td>" + frequency + "</td>");
@@ -118,6 +123,25 @@ $(document).ready(function() {
 		// appends table row to the table body
 		$("#table-body").append(trainRow);
 
-	})
+	});
+
+	// deletes table row data
+	$(document).on("click", "#table-body button.glyphicon-trash", function () {
+		
+		database.ref("/trains/" + $(this).data("value")).remove();
+		// deleted the table row markup
+		$(this).parent().parent().remove();
+
+	});
 
 });
+
+
+
+
+
+
+
+
+
+
