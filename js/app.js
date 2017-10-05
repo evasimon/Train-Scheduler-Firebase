@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 	// check if someone is logged in
 	if ( !firebase.auth().currentUser ) {
-		window.location = "/login.html";
+		window.location = "login.html";
 	}
 	// checks if the authentication has changed
 	firebase.auth().onAuthStateChanged(function(user) {
