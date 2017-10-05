@@ -13,6 +13,7 @@ body {
 #container {
 	width: 90%;
 	margin: auto;
+	display: none;
 }
 
 h1 {

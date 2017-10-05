@@ -13,14 +13,19 @@ $(document).ready(function() {
 
 	// check if someone is logged in
 	if ( !firebase.auth().currentUser ) {
-		window.location = "login.html";
+		console.log(firebase.auth().currentUser);
+		// = "login.html";
 	}
+
 	// checks if the authentication has changed
 	firebase.auth().onAuthStateChanged(function(user) {
 		if (user) {
 			// User is signed in.
 			var email = user.email;
 			$("#account-details").text(email);
+			$("#container").show();
+		} else {
+			window.location = "login.html";
 		}
 	});
 
@@ -109,11 +114,11 @@ $(document).ready(function() {
 		};
 
 		// appends each table cell to the table row
-		trainRow. append("<td>" + name + "</td>");
-		trainRow. append("<td>" + destination + "</td>");
-		trainRow. append("<td>" + frequency + "</td>");
-		trainRow. append("<td>" + trainNextTimeFormated + "</td>");
-		trainRow. append("<td>" + minToNextTrain + "</td>");
+		trainRow.append("<td>" + name + "</td>");
+		trainRow.append("<td>" + destination + "</td>");
+		trainRow.append("<td>" + frequency + "</td>");
+		trainRow.append("<td>" + trainNextTimeFormated + "</td>");
+		trainRow.append("<td>" + minToNextTrain + "</td>");
 
 		// appends table row to the table body
 		$("#table-body").append(trainRow);
