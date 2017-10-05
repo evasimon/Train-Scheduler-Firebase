@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Train Scheduler App</title>
+
+	<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyAZaH9g0dKyvCnH-DP4WEO_vlLSQqWunZM",
+	    authDomain: "train-scheduler-498c8.firebaseapp.com",
+	    databaseURL: "https://train-scheduler-498c8.firebaseio.com",
+	    projectId: "train-scheduler-498c8",
+	    storageBucket: "train-scheduler-498c8.appspot.com",
+	    messagingSenderId: "378773885740"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+
+	<script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
+	<script type="text/javascript">
+	// FirebaseUI config.
+	var uiConfig = {
+		callbacks: {
+			signInSuccess: function(currentUser, credential, redirectUrl) {
+	// Do something.
+	// Return type determines whether we continue the redirect automatically
+	// or whether we leave that to developer to handle.
+	return true;
+	},
+	uiShown: function() {
+	// The widget is rendered.
+	// Hide the loader.
+	document.getElementById('loader').style.display = 'none';
+	}
+	},
+	credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM,
+	// Query parameter name for mode.
+	queryParameterForWidgetMode: 'mode',
+	// Query parameter name for sign in success url.
+	queryParameterForSignInSuccessUrl: 'signInSuccessUrl',
+	// Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+	signInFlow: 'popup',
+	signInSuccessUrl: 'index.html',
+	signInOptions: [
+		// Leave the lines as is for the providers you want to offer your users.
+		firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+		firebase.auth.GithubAuthProvider.PROVIDER_ID,
+	],
+	// Terms of service url.
+	tosUrl: '<your-tos-url>'
+	};
+
+	var ui = new firebaseui.auth.AuthUI(firebase.auth());
+	// The start method will wait until the DOM is loaded.
+	ui.start('#firebaseui-auth-container', uiConfig);
+</script>
+</head>
+<body>
+<!-- The surrounding HTML is left untouched by FirebaseUI.
+	Your app may use that space for branding, controls and other customizations.-->
+	<h1>Welcome to Train Scheduler App</h1>
+	<div id="firebaseui-auth-container"></div>
+	<div id="loader">Loading...</div>
+</body>
+</html>
